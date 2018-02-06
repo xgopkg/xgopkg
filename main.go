@@ -9,13 +9,14 @@ import (
 )
 
 const (
-	//QTraderURL for qtrader.io home page URL
-	QTraderURL = "https://www.xgopkg.com"
+	//HomeURL for qtrader.io home page URL
+	HomeURL = "https://www.xgopkg.com"
 )
 
 //PackageView package view struct
 type PackageView struct {
 	Title string
+	Group string
 	Name  string
 }
 
@@ -36,29 +37,31 @@ func main() {
 	e := echo.New()
 	e.Renderer = t
 	e.GET("/", func(c echo.Context) error {
-		c.Redirect(301, QTraderURL)
+		c.Redirect(301, HomeURL)
 		return nil
 	})
 	//support xgopkg.com/x,xgopkg.com/x/y,xgopkg.com/x/y/z, xgopkg/x/y/z/
-	e.GET("/:pkg", handPkg)
-	e.GET("/:pkg/:subPkg", handPkg)
-	e.GET("/:pkg/:subPkg/:sSubPkg", handPkg)
-	e.GET("/:pkg/:subPkg/:sSubPkg/:sSSubPkg", handPkg)
+	e.GET("/:group/:pkg", handPkg)
+	e.GET("/:group/:pkg/:subPkg", handPkg)
+	e.GET("/:group/:pkg/:subPkg/:sSubPkg", handPkg)
+	e.GET("/:group/:pkg/:subPkg/:sSubPkg/:sSSubPkg", handPkg)
+	e.GET("/:group/:pkg/**", handPkg)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
 func handPkg(c echo.Context) error {
+	groupName := c.Param("group")
 	pkgName := c.Param("pkg")
 	isGoGet := c.QueryParam("go-get")
 	pkg := &PackageView{
 		Title: pkgName,
+		Group: groupName,
 		Name:  pkgName,
 	}
 	if pkg.Name != "" && isGoGet == "1" {
 		return c.Render(http.StatusOK, "pkg.html", pkg)
-
 	}
-	c.Redirect(301, QTraderURL)
+	c.Redirect(301, HomeURL)
 	return nil
 }
