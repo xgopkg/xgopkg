@@ -1,6 +1,6 @@
 FROM alpine
 LABEL maintainer="drmfly.liw@gmail.com"
-WORKDIR /srv/gopkg
+WORKDIR /srv/xgopkg
 ADD public ./public
-ADD gopkg ./
-ENTRYPOINT ["./gopkg"]
+ADD xgopkg ./
+ENTRYPOINT ["./xgopkg"]
