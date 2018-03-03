@@ -10,7 +10,8 @@ $ git clone https://github.com/xgopkg/xgopkg.git
 $ brew install dep
 $ brew upgrade dep
 ```
-[dep使用](https://golang.github.io/dep/)
+&emsp;&emsp;[dep使用](https://golang.github.io/dep/)
+
 3. 下载go依赖包
 ```shell
 $ cd xgopkg
