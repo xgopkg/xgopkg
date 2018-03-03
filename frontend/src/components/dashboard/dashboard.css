@@ -1,10 +1,17 @@
+.header{
+  padding: 0;
+}
+
 .logo-title{
+  width: 200px;
   float: left;
   height: 32px;
-  line-height: 32px;
-  text-align: center;
+  line-height: 48px;
   color: #fff;
   font-size: 16px;
-  border-radius: 6px;
-  margin: 16px;
+  text-align: center;
+}
+
+.ant-layout-header{
+  height: 48px;
 }

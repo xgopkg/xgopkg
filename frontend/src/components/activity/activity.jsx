@@ -41,19 +41,16 @@ class Activity extends React.Component {
               </SubMenu>
             </Menu>
           </Sider>
-          <Layout>
+          <Layout style={{ padding: '0 24px 24px' }}>
             <Content style={{ margin: '0 16px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>User</Breadcrumb.Item>
                 <Breadcrumb.Item>Bill</Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ padding: 24, background: '#fff', minHeight: '100vh' }}>
+              <div style={{ padding: 24, background: '#fff', minHeight: '80vh' }}>
                 <h1>活动页面</h1>
               </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>
-              Ant Design ©2016 Created by Ant UED
-          </Footer>
           </Layout>
         </Layout>
       </div>

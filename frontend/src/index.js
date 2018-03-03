@@ -16,7 +16,6 @@ const ROUTE_CONFIG = () => (
   </main>
 )
 
-
 ReactDOM.render((
   <HashRouter>
     <ROUTE_CONFIG />
