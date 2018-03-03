@@ -28,13 +28,13 @@ class DashBoard extends React.Component {
         <Layout>
           <Header className="header">
             <div className="logo-title" >
-              Xgopkg
+              XGoPkg
             </div>
             <Menu
               theme="dark"
               mode="horizontal"
               defaultSelectedKeys={['1']}
-              style={{ lineHeight: '64px' }}
+              style={{ lineHeight: '48px' }}
             >
               <Menu.Item key="1">
                 <Link to='/dashboard/product'>产品</Link>
