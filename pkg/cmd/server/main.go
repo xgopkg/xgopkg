@@ -34,8 +34,8 @@ func (p PackageResource) hello(request *restful.Request, res *restful.Response) 
 }
 
 const (
-	//HomeURL for qtrader.io home page URL
-	HomeURL = "https://www.xgopkg.com"
+//HomeURL for qtrader.io home page URL
+// HomeURL = "https://www.xgopkg.com"
 )
 
 func main() {
