@@ -1,4 +1,14 @@
+sudo: required
+
 language: go
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
 
 # Only the last two Go releases are supported by the Go team with security
 # updates. Any versions older than that should be considered deprecated.
@@ -30,6 +40,10 @@ notifications:
 # flunk the build and immediately stop. It's sorta like having
 # set -e enabled in bash. 
 before_script:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS xgopkg;'
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('123456') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade
+  - sudo service mysql restart
   # - mkdir -p $HOME/gopath/src/github.com/xgopkg/xgopkg
   - mkdir -p $HOME/gopath/src/xgopkg.com
   - mv $HOME/gopath/src/github.com/xgopkg/xgopkg $HOME/gopath/src/xgopkg.com/
