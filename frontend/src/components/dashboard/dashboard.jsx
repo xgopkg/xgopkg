@@ -28,7 +28,7 @@ class DashBoard extends React.Component {
         <Layout>
           <Header className="header">
             <div className="logo-title" >
-              Starry Cloud
+              Xgopkg
             </div>
             <Menu
               theme="dark"
