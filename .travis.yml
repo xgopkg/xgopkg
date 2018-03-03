@@ -48,8 +48,11 @@ before_script:
   # - sudo service mysql restart
   # - mkdir -p $HOME/gopath/src/github.com/xgopkg/xgopkg
   - mkdir -p $HOME/gopath/src/xgopkg.com
-  - mv $HOME/gopath/src/github.com/xgopkg/xgopkg $HOME/gopath/src/xgopkg.com/
+  - echo $TRAVIS_BUILD_DIR
+  # - mv $HOME/gopath/src/github.com/xgopkg/xgopkg $HOME/gopath/src/xgopkg.com/
+  - mv $TRAVIS_BUILD_DIR $HOME/gopath/src/xgopkg.com/
   # - rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/xgopkg.com/xgopkg/
+  # - export TRAVIS_BUILD_DIR=$HOME/gopath/src/xgopkg.com/xgopkg
   - export TRAVIS_BUILD_DIR=$HOME/gopath/src/xgopkg.com/xgopkg
   - cd $HOME/gopath/src/xgopkg.com/xgopkg
   - GO_FILES=$(find . -iname '*.go' -type f | egrep -v '/vendor/|/cmd/') # All the .go files, excluding vendor/
