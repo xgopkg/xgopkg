@@ -1,4 +1,4 @@
-# XGoPkg
+# Xgopkg
 ## 开发指南
 1. 获取代码
 ```shell
