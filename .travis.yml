@@ -30,6 +30,12 @@ notifications:
 # flunk the build and immediately stop. It's sorta like having
 # set -e enabled in bash. 
 before_script:
+  # - mkdir -p $HOME/gopath/src/github.com/xgopkg/xgopkg
+  - mkdir -p $HOME/gopath/src/xgopkg.com
+  - mv $HOME/gopath/src/github.com/xgopkg/xgopkg $HOME/gopath/src/xgopkg.com/
+  - rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/xgopkg.com/xgopkg/
+  - export TRAVIS_BUILD_DIR=$HOME/gopath/src/xgopkg.com/xgopkg
+  - cd $HOME/gopath/src/xgopkg.com/xgopkg
   - GO_FILES=$(find . -iname '*.go' -type f | egrep -v '/vendor/|/cmd/') # All the .go files, excluding vendor/
   - go get github.com/golang/lint/golint                        # Linter
   - go get honnef.co/go/tools/cmd/megacheck                     # Badass static analyzer/linter
