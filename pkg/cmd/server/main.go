@@ -68,16 +68,16 @@ func enrichSwaggerObject(swo *spec.Swagger) {
 			Version: "1.0.0",
 		},
 	}
-	swo.Tags = []spec.Tag{spec.Tag{TagProps: spec.TagProps{
+	swo.Tags = []spec.Tag{{TagProps: spec.TagProps{
 		Name:        "users",
 		Description: "Managing users"}}}
 }
 
 //PackageView package view struct
 // type PackageView struct {
-// 	Title string
-// 	Group string
-// 	Name  string
+//      Title string
+//      Group string
+//      Name  string
 // }
 
 //Template template impl
@@ -87,11 +87,11 @@ func enrichSwaggerObject(swo *spec.Swagger) {
 
 //Render render template
 // func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-// 	return t.templates.ExecuteTemplate(w, name, data)
+//      return t.templates.ExecuteTemplate(w, name, data)
 // }
 // func main() {
 // t := &Template{
-// 	templates: template.Must(template.ParseGlob("public/views/*.html")),
+//      templates: template.Must(template.ParseGlob("public/views/*.html")),
 // }
 
 // e := echo.New()
@@ -111,17 +111,17 @@ func enrichSwaggerObject(swo *spec.Swagger) {
 // }
 
 // func handPkg(c echo.Context) error {
-// 	groupName := c.Param("group")
-// 	pkgName := c.Param("pkg")
-// 	isGoGet := c.QueryParam("go-get")
-// 	pkg := &PackageView{
-// 		Title: pkgName,
-// 		Group: groupName,
-// 		Name:  pkgName,
-// 	}
-// 	if pkg.Name != "" && isGoGet == "1" {
-// 		return c.Render(http.StatusOK, "pkg.html", pkg)
-// 	}
-// 	c.Redirect(301, HomeURL)
-// 	return nil
+//      groupName := c.Param("group")
+//      pkgName := c.Param("pkg")
+//      isGoGet := c.QueryParam("go-get")
+//      pkg := &PackageView{
+//              Title: pkgName,
+//              Group: groupName,
+//              Name:  pkgName,
+//      }
+//      if pkg.Name != "" && isGoGet == "1" {
+//              return c.Render(http.StatusOK, "pkg.html", pkg)
+//      }
+//      c.Redirect(301, HomeURL)
+//      return nil
 // }
