@@ -4,18 +4,18 @@
 ```shell
 $ git clone https://github.com/xgopkg/xgopkg.git
 ```
-2. 下载go依赖包
-```shell
-$ cd xgopkg
-$ dep ensure
-```
-dep安装
+2. dep安装 如已安装忽略此步骤
 
 ```shell
 $ brew install dep
 $ brew upgrade dep
 ```
 [dep使用](https://golang.github.io/dep/)
+3. 下载go依赖包
+```shell
+$ cd xgopkg
+$ dep ensure
+```
 
 3. 前端
 
