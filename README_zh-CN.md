@@ -25,3 +25,34 @@ $ cd frontend
 $ yarn install
 $ yarn start
 ```
+## 代码结构
+```
+.
+├── Gopkg.lock
+├── Gopkg.toml
+├── LICENSE
+├── README.md
+├── README_zh-CN.md
+├── docker
+│   └── Dockerfile
+├── frontend
+│   ├── README.md
+│   ├── config-overrides.js
+│   ├── node_modules
+│   ├── package.json
+│   ├── public
+│   ├── src
+│   └── yarn.lock
+├── pkg
+│   ├── api
+│   ├── client
+│   ├── cmd
+│   ├── db
+│   └── resource
+├── scripts
+│   └── build.sh
+└── vendor
+    ├── github.com
+    ├── golang.org
+    └── gopkg.in
+```

@@ -1,5 +1,5 @@
 FROM alpine
-LABEL maintainer="drmfly.liw@gmail.com"
+LABEL maintainer="dev_support@xgopkg.com"
 WORKDIR /srv/xgopkg
 ADD public ./public
 ADD xgopkg ./
