@@ -15,7 +15,7 @@ import (
 	_ "github.com/go-xorm/xorm"
 	_ "github.com/mattes/migrate"
 	_ "github.com/spf13/viper"
-	// "xgopkg.com/xgopkg/pkg/assets"
+	"xgopkg.com/xgopkg/pkg/assets"
 )
 
 // PackageResource xxx
@@ -55,10 +55,10 @@ func main() {
 		log.Fatal("No caller information")
 	}
 	log.Printf("Filename : %q, Dir : %q\n", filename, path.Dir(filename))
-	distPath := path.Join(path.Dir(filename), "../../../frontend/public/swagger/dist")
 	// distPath := path.Join(path.Dir(filename), "../../../frontend/public/swagger/dist")
-	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir(distPath))))
-	// http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(assets.FS("swagger/dist"))))
+	// distPath := path.Join(path.Dir(filename), "../../../frontend/public/swagger/dist")
+	// http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir(distPath))))
+	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(assets.FS("swagger/dist"))))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
