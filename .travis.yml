@@ -49,7 +49,7 @@ before_script:
   - export TRAVIS_BUILD_DIR=$HOME/gopath/src/xgopkg.com/xgopkg
   - cd $HOME/gopath/src/xgopkg.com/xgopkg
   - GO_FILES=$(find . -iname '*.go' -type f | egrep -v '/vendor/|/cmd/') # All the .go files, excluding vendor/
-  - go get github.com/golang/lint/golint                        # Linter
+  - go get -u golang.org/x/lint/golint                          # Linter
   - go get honnef.co/go/tools/cmd/megacheck                     # Badass static analyzer/linter
   - go get github.com/fzipp/gocyclo
   - chmod u+x scripts/binmigrations.sh && sh scripts/binmigrations.sh

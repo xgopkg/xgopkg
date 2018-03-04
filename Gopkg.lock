@@ -20,6 +20,12 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "github.com/elazarl/go-bindata-assetfs"
+  packages = ["."]
+  revision = "30f82fa23fd844bd5bb1e5f216db87fd77b5eb43"
+  version = "v1.0.0"
+
+[[projects]]
   name = "github.com/emicklei/go-restful"
   packages = [
     ".",
@@ -125,9 +131,7 @@
   packages = [
     ".",
     "database",
-    "database/mysql",
-    "source",
-    "source/go-bindata"
+    "source"
   ]
   revision = "035c07716cd373d88456ec4d701402df52584cb4"
   version = "v3.0.1"
@@ -238,6 +242,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "2b04f0c4c4b9485f35fc45703ea9f61862a1e827e02ec9ce808dc2602fdf487c"
+  inputs-digest = "b4920a61645cb09dfe219e5fde745671328d60c7c21c28cefb302391ba3fb5b7"
   solver-name = "gps-cdcl"
   solver-version = 1

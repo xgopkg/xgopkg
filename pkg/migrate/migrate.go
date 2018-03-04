@@ -9,9 +9,10 @@ import (
 // "github.com/mattes/migrate/database/mysql"
 // "xgopkg.com/xgopkg/pkg/config"
 // _ "github.com/mattes/migrate/source/file"
+//"github.com/mattes/migrate/source/go-bindata"
 )
 
-func migrate() {
+func startMigrate() {
 	// dbURL := config.GetMySQLURL() + "&multiStatements=true"
 	// db, _ := sql.Open("mysql", dbURL)
 	// driver, _ := mysql.WithInstance(db, &mysql.Config{})
