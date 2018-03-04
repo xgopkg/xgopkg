@@ -8,5 +8,5 @@ import (
 )
 
 func TestStartMigrate(t *testing.T) {
-	StartMigrate()
+	Migrate()
 }

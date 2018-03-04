@@ -3,6 +3,7 @@ package migrate
 
 import (
 	// "database/sql"
+	"xgopkg.com/xgopkg/pkg/config"
 
 	"gopkg.in/logger.v1"
 
@@ -11,17 +12,9 @@ import (
 	// "github.com/mattes/migrate/source/go-bindata/examples/migrations"
 )
 
-func StartMigrate() {
-	// dbURL := config.GetMySQLURL() + "&multiStatements=true"
-	// db, _ := sql.Open("mysql", dbURL)
-	// driver, _ := mysql.WithInstance(db, &mysql.Config{})
-	// m, _ := migrate.NewWithDatabaseInstance(
-	// 	"file:///migrations",
-	// 	"mysql",
-	// 	driver,
-	// )
-
-	// m.Steps(2)
+//Migrate start migrations
+func Migrate() {
+	dbURL := config.GetMySQLURL()
 	s := bindata.Resource(AssetNames(),
 		func(name string) ([]byte, error) {
 			log.Info(name)
@@ -34,8 +27,10 @@ func StartMigrate() {
 		//todo
 	}
 
+	log.Debug("database url: ", dbURL)
+
 	// migrate.NewWithD
-	m, err := mg.NewWithSourceInstance("go-bindata", d, "mysql://travis:@/xgopkg?charset=utf8")
+	m, err := mg.NewWithSourceInstance("go-bindata", d, "mysql://"+dbURL)
 	if err != nil {
 		log.Error(err)
 		//todo
