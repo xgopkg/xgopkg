@@ -131,7 +131,9 @@
   packages = [
     ".",
     "database",
-    "source"
+    "database/mysql",
+    "source",
+    "source/go-bindata"
   ]
   revision = "035c07716cd373d88456ec4d701402df52584cb4"
   version = "v3.0.1"
@@ -242,6 +244,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b4920a61645cb09dfe219e5fde745671328d60c7c21c28cefb302391ba3fb5b7"
+  inputs-digest = "81aca3973c8f3f1f18f6532a197c41d7d69bdf2da3759e9a2c56c5aef6983d22"
   solver-name = "gps-cdcl"
   solver-version = 1
