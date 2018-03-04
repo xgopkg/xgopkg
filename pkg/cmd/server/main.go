@@ -5,6 +5,8 @@ import (
 	// "io"
 	"log"
 	"net/http"
+	"path"
+	"runtime"
 
 	// "github.com/labstack/echo"
 	"github.com/emicklei/go-restful"
@@ -13,6 +15,7 @@ import (
 	_ "github.com/go-xorm/xorm"
 	_ "github.com/mattes/migrate"
 	_ "github.com/spf13/viper"
+	// "xgopkg.com/xgopkg/pkg/assets"
 )
 
 // PackageResource xxx
@@ -43,11 +46,19 @@ func main() {
 	restful.DefaultContainer.Add(p.WebService())
 	config := restfulspec.Config{
 		WebServices: restful.RegisteredWebServices(),
-		APIPath:     "/apidocs.json",
+		APIPath:     "/swagger.json",
 		PostBuildSwaggerObjectHandler: enrichSwaggerObject}
 	restful.DefaultContainer.Add(restfulspec.NewOpenAPIService(config))
 	//todo env get swaagerr ui dis
-	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir("/Users/liwei/JSWorkspace/swagger-ui/dist"))))
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		log.Fatal("No caller information")
+	}
+	log.Printf("Filename : %q, Dir : %q\n", filename, path.Dir(filename))
+	distPath := path.Join(path.Dir(filename), "../../../frontend/public/swagger/dist")
+	// distPath := path.Join(path.Dir(filename), "../../../frontend/public/swagger/dist")
+	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir(distPath))))
+	// http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(assets.FS("swagger/dist"))))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }

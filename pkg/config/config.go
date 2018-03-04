@@ -36,6 +36,11 @@ func init() {
 	log.Info(viper.GetString("mysql.host"))
 }
 
+//GetMySQLURL provides db address for connecting db
+func GetMySQLURL() string {
+	return viper.GetString("database.url")
+}
+
 //GetConfig get config by viper
 // func GetConfig() {
 // 	configDir := viper.GetString("config_dir")
