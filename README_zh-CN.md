@@ -1,8 +1,8 @@
-# Xgopkg
+# go-rest-sample
 ## 开发指南
 1. 获取代码
 ```shell
-$ git clone https://github.com/xgopkg/xgopkg.git
+$ git clone https://github.com/chclouid/go-rest-sample.git
 ```
 2. dep安装 如已安装忽略此步骤
 
@@ -17,14 +17,13 @@ $ brew upgrade dep
 $ cd xgopkg
 $ dep ensure
 ```
+4
 
-3. 前端
-
-```shell
-$ cd frontend
-$ yarn install
-$ yarn start
 ```
+$ cd pkg/cmd/server
+$ go run main.go
+```
+
 ## 代码结构
 ```
 .
@@ -35,14 +34,6 @@ $ yarn start
 ├── README_zh-CN.md
 ├── docker
 │   └── Dockerfile
-├── frontend
-│   ├── README.md
-│   ├── config-overrides.js
-│   ├── node_modules
-│   ├── package.json
-│   ├── public
-│   ├── src
-│   └── yarn.lock
 ├── pkg
 │   ├── api
 │   ├── client
