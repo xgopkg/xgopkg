@@ -17,14 +17,13 @@ $ brew upgrade dep
 $ cd xgopkg
 $ dep ensure
 ```
+4
 
-3. 前端
-
-```shell
-$ cd frontend
-$ yarn install
-$ yarn start
 ```
+$ cd pkg/cmd/server
+$ go run main.go
+```
+
 ## 代码结构
 ```
 .
