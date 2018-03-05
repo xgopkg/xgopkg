@@ -1,8 +1,8 @@
-# Xgopkg
+# go-rest-sample
 ## 开发指南
 1. 获取代码
 ```shell
-$ git clone https://github.com/xgopkg/xgopkg.git
+$ git clone https://github.com/chclouid/go-rest-sample.git
 ```
 2. dep安装 如已安装忽略此步骤
 
@@ -34,14 +34,6 @@ $ go run main.go
 ├── README_zh-CN.md
 ├── docker
 │   └── Dockerfile
-├── frontend
-│   ├── README.md
-│   ├── config-overrides.js
-│   ├── node_modules
-│   ├── package.json
-│   ├── public
-│   ├── src
-│   └── yarn.lock
 ├── pkg
 │   ├── api
 │   ├── client
