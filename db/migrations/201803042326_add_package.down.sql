@@ -1,1 +1,1 @@
-DROP TABLE `xgp_package`;
+DROP TABLE IF EXISTS xgp_package;

@@ -1,7 +1,7 @@
 <html>
 <head>
-    <meta name="go-import" content="xgopkg.com/{{.Group}}/{{.Name}} git https://git.changhong.io/{{.Group}}/{{.Name}}">
+    <meta name="go-import" content="{{.Host}}/{{.Name}} git {{.Source}}">
     <meta name="go-source"
-          content="xgopkg.com/{{.Group}}/{{.Name}}     https://git.changhong.io/{{.Group}}/{{.Name}} https://git.changhong.io/{{.Group}}/{{.Name}}/tree/master{/dir} https://git.changhong.io/{{.Group}}/{{.Name}}/blob/master{/dir}/{file}#L{line}">
+          content="{{.Host}}/{{.Name}} {{.Source}} {{.Source}}/tree/master{/dir} {{.Source}}/blob/master{/dir}/{file}#L{line}">
 </head>
 </html>

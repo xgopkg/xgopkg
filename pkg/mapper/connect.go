@@ -1,6 +1,9 @@
 package mapper
 
 import (
+	"time"
+
+	"github.com/go-xorm/core"
 	"github.com/go-xorm/xorm"
 	"github.com/spf13/viper"
 	"gopkg.in/logger.v1"
@@ -27,6 +30,9 @@ func connectDb() {
 	if err != nil {
 		log.Fatal("DB connect error ", err)
 	}
+	engine.TZLocation, _ = time.LoadLocation("Asia/Shanghai")
+	tbMapper := core.NewPrefixMapper(core.SnakeMapper{}, "xgp_")
+	engine.SetTableMapper(tbMapper)
 	engine.SetMaxIdleConns(maxIdle)
 	engine.SetMaxOpenConns(maxActive)
 }

@@ -2,6 +2,7 @@
 package migrate
 
 import (
+	"path/filepath"
 	// "database/sql"
 	"xgopkg.com/xgopkg/pkg/config"
 
@@ -15,10 +16,11 @@ import (
 //Migrate start migrations
 func Migrate() {
 	dbURL := config.GetMySQLURL()
-	s := bindata.Resource(AssetNames(),
+	names, err := AssetDir("migrations")
+	s := bindata.Resource(names,
 		func(name string) ([]byte, error) {
 			log.Info(name)
-			return Asset(name)
+			return Asset(filepath.Join("migrations", name))
 		})
 
 	d, err := bindata.WithInstance(s)
