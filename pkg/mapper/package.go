@@ -24,7 +24,7 @@ type PackageMapper struct {
 func (p *PackageMapper) Save(pkg *Package) error {
 	re, err := engine.InsertOne(pkg)
 	if err != nil {
-		log.Errorf("An error occured while saving pkg to db: error= %s", err)
+		log.Errorf("An error occurred while saving pkg to db: error= %s", err)
 		return err
 	}
 	log.Debugf("Insert pkg to db: result= %d", re)
