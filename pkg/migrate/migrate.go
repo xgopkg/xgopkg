@@ -17,6 +17,9 @@ import (
 func Migrate() {
 	dbURL := config.GetMySQLURL()
 	names, err := AssetDir("migrations")
+	if err != nil {
+		log.Error(err)
+	}
 	s := bindata.Resource(names,
 		func(name string) ([]byte, error) {
 			log.Info(name)

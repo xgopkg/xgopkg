@@ -25,6 +25,9 @@ func Render(req *restful.Request, resp *restful.Response) {
 	}
 	// you might want to cache compiled templates
 	text, err := assets.Asset("public/views/pkg.html")
+	if err != nil {
+		log.Error(err)
+	}
 	tmpl, err := template.New("pkgTemplate").Parse(string(text))
 	// tmpl, err := template.New("mytmpl", assets.Asset).Parse("public/views/pkg.html")
 	log.Debugf("tmpl text: %s", text)

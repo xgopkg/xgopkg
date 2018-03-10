@@ -11,7 +11,7 @@ func init() {
 	log.SetOutputLevel(0)
 }
 func TestAsset(t *testing.T) {
-	data, err := Asset("swagger/dist/index.html")
+	data, err := Asset("public/swagger/dist/index.html")
 	if err != nil {
 		t.Error(err)
 	}
