@@ -52,7 +52,7 @@ func init() {
 func main() {
 	p := PackageResource{}
 	ws := new(restful.WebService)
-	ws.Route(ws.GET("/{group}/{*}").To(resource.Render))
+	ws.Route(ws.GET("/{*}").To(resource.Render))
 
 	restful.DefaultContainer.Add(p.WebService()).Add(ws)
 	config := restfulspec.Config{

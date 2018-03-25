@@ -3,8 +3,8 @@
 // .DS_Store
 // README.MD
 // README_zh-CN.MD
-// migrations/201803042326_add_package.down.sql
-// migrations/201803042326_add_package.up.sql
+// migrations/201803042326_add_package_table.down.sql
+// migrations/201803042326_add_package_table.up.sql
 // test/clean.sql
 // test/data.sql
 package migrate
@@ -132,42 +132,42 @@ func readme_zhCnMd() (*asset, error) {
 	return a, nil
 }
 
-var _migrations201803042326_add_packageDownSql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x72\x09\xf2\x0f\x50\x08\x71\x74\xf2\x71\x55\xf0\x74\x53\x70\x8d\xf0\x0c\x0e\x09\x56\xa8\x48\x2f\x88\x2f\x48\x4c\xce\x4e\x4c\x4f\xb5\x06\x04\x00\x00\xff\xff\x50\xaa\xe6\x38\x21\x00\x00\x00")
+var _migrations201803042326_add_package_tableDownSql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x72\x09\xf2\x0f\x50\x08\x71\x74\xf2\x71\x55\xf0\x74\x53\x70\x8d\xf0\x0c\x0e\x09\x56\xa8\x48\x2f\x88\x2f\x48\x4c\xce\x4e\x4c\x4f\xb5\x06\x04\x00\x00\xff\xff\x50\xaa\xe6\x38\x21\x00\x00\x00")
 
-func migrations201803042326_add_packageDownSqlBytes() ([]byte, error) {
+func migrations201803042326_add_package_tableDownSqlBytes() ([]byte, error) {
 	return bindataRead(
-		_migrations201803042326_add_packageDownSql,
-		"migrations/201803042326_add_package.down.sql",
+		_migrations201803042326_add_package_tableDownSql,
+		"migrations/201803042326_add_package_table.down.sql",
 	)
 }
 
-func migrations201803042326_add_packageDownSql() (*asset, error) {
-	bytes, err := migrations201803042326_add_packageDownSqlBytes()
+func migrations201803042326_add_package_tableDownSql() (*asset, error) {
+	bytes, err := migrations201803042326_add_package_tableDownSqlBytes()
 	if err != nil {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "migrations/201803042326_add_package.down.sql", size: 33, mode: os.FileMode(420), modTime: time.Unix(1520600739, 0)}
+	info := bindataFileInfo{name: "migrations/201803042326_add_package_table.down.sql", size: 33, mode: os.FileMode(420), modTime: time.Unix(1521984615, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
-var _migrations201803042326_add_packageUpSql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x7c\xcf\x41\x4b\xc0\x20\x1c\x05\xf0\xfb\x3e\xc5\xff\xa8\xd0\x61\x0d\x76\xea\x64\xcb\x60\xe4\x5c\x88\x3b\xec\xa4\xa6\x62\x32\xb6\xc4\xb9\xe8\xe3\xc7\x3a\xd4\x82\xe8\xf6\xe0\xfd\x78\xf0\x3a\x41\x89\xa4\x20\xc9\x3d\xa3\xa0\x3f\x42\x52\xc9\xd8\xc5\x04\xaf\x01\x55\x00\x3a\x3a\x0d\x2f\x31\xc4\xad\xa0\xa6\xc6\xc0\x47\x09\x7c\x62\x0c\xc8\x24\x47\xd5\xf3\x4e\xd0\x81\x72\x79\x73\xd2\xb4\x04\xb5\x99\xd5\x6b\xb0\xaf\x26\xa3\xf6\xc2\xbf\xfb\xfd\xed\xc8\xd6\x6b\x78\x37\xf9\x0b\xdd\xd6\x7f\x29\xe7\x77\xfb\x63\x9a\xb6\xc5\xf0\x40\x1f\xc9\xc4\x2e\xee\x48\xce\x14\xef\x94\x29\x1a\xce\x54\xe2\xea\x7f\x2f\xd9\xec\xff\x17\xcf\xa2\x1f\x88\x98\xe1\x89\xce\x80\xce\xa7\xb8\xc2\x77\x9f\x01\x00\x00\xff\xff\xb5\xbd\x64\x2f\x11\x01\x00\x00")
+var _migrations201803042326_add_package_tableUpSql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x7c\xcc\xcb\x4a\xc4\x30\x14\x87\xf1\x7d\x9f\xe2\xbf\x4c\xc0\xc5\x38\xd0\x95\xab\x33\x9d\xa3\x06\xd3\x8c\x84\x53\x61\x56\x21\x24\xa1\x0c\x45\x0d\xbd\x80\x8f\x2f\x08\xde\x40\x5c\x7f\x3f\xbe\xce\x33\x09\x43\xe8\x60\x19\x6f\x63\x0d\x35\xa6\x29\x8e\x05\xaa\x01\x2e\x19\x07\x73\x67\x9c\xa8\xfd\x4e\xc3\x9d\x04\x6e\xb0\x16\x34\xc8\x29\x18\xd7\x79\xee\xd9\xc9\x55\x03\xd4\x69\x0c\x2f\xf1\xb9\xa0\xbb\x27\xaf\xda\x1f\xf8\xb3\x2e\xaf\xdb\x9c\x0a\x9e\xc8\x7f\x90\xeb\xdd\x1f\x26\x97\x25\x7d\x89\x7d\xdb\x6a\x1c\xf9\x96\x06\xfb\xad\xb6\x9a\xe3\x5a\x72\x88\x2b\x8e\x24\x2c\xa6\xe7\x5f\x97\x34\x97\x7f\xfb\xa3\x37\x3d\xf9\x33\x1e\xf8\x0c\x75\xc9\xba\xd1\x37\xef\x01\x00\x00\xff\xff\xa6\x01\x22\x60\x01\x01\x00\x00")
 
-func migrations201803042326_add_packageUpSqlBytes() ([]byte, error) {
+func migrations201803042326_add_package_tableUpSqlBytes() ([]byte, error) {
 	return bindataRead(
-		_migrations201803042326_add_packageUpSql,
-		"migrations/201803042326_add_package.up.sql",
+		_migrations201803042326_add_package_tableUpSql,
+		"migrations/201803042326_add_package_table.up.sql",
 	)
 }
 
-func migrations201803042326_add_packageUpSql() (*asset, error) {
-	bytes, err := migrations201803042326_add_packageUpSqlBytes()
+func migrations201803042326_add_package_tableUpSql() (*asset, error) {
+	bytes, err := migrations201803042326_add_package_tableUpSqlBytes()
 	if err != nil {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "migrations/201803042326_add_package.up.sql", size: 273, mode: os.FileMode(420), modTime: time.Unix(1520687128, 0)}
+	info := bindataFileInfo{name: "migrations/201803042326_add_package_table.up.sql", size: 257, mode: os.FileMode(420), modTime: time.Unix(1521984622, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -207,7 +207,7 @@ func testDataSql() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "test/data.sql", size: 245, mode: os.FileMode(420), modTime: time.Unix(1520687350, 0)}
+	info := bindataFileInfo{name: "test/data.sql", size: 245, mode: os.FileMode(420), modTime: time.Unix(1520693113, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -264,13 +264,13 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
-	".DS_Store":                                    Ds_store,
-	"README.MD":                                    readmeMd,
-	"README_zh-CN.MD":                              readme_zhCnMd,
-	"migrations/201803042326_add_package.down.sql": migrations201803042326_add_packageDownSql,
-	"migrations/201803042326_add_package.up.sql":   migrations201803042326_add_packageUpSql,
-	"test/clean.sql":                               testCleanSql,
-	"test/data.sql":                                testDataSql,
+	".DS_Store":                                          Ds_store,
+	"README.MD":                                          readmeMd,
+	"README_zh-CN.MD":                                    readme_zhCnMd,
+	"migrations/201803042326_add_package_table.down.sql": migrations201803042326_add_package_tableDownSql,
+	"migrations/201803042326_add_package_table.up.sql":   migrations201803042326_add_package_tableUpSql,
+	"test/clean.sql":                                     testCleanSql,
+	"test/data.sql":                                      testDataSql,
 }
 
 // AssetDir returns the file names below a certain
@@ -318,8 +318,8 @@ var _bintree = &bintree{nil, map[string]*bintree{
 	"README.MD":       {readmeMd, map[string]*bintree{}},
 	"README_zh-CN.MD": {readme_zhCnMd, map[string]*bintree{}},
 	"migrations": {nil, map[string]*bintree{
-		"201803042326_add_package.down.sql": {migrations201803042326_add_packageDownSql, map[string]*bintree{}},
-		"201803042326_add_package.up.sql":   {migrations201803042326_add_packageUpSql, map[string]*bintree{}},
+		"201803042326_add_package_table.down.sql": {migrations201803042326_add_package_tableDownSql, map[string]*bintree{}},
+		"201803042326_add_package_table.up.sql":   {migrations201803042326_add_package_tableUpSql, map[string]*bintree{}},
 	}},
 	"test": {nil, map[string]*bintree{
 		"clean.sql": {testCleanSql, map[string]*bintree{}},

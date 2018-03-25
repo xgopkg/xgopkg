@@ -13,11 +13,21 @@ type Package struct {
 	Source      string    `xorm:"'pkg_source'"`
 	Description string    `xorm:"varchar(255) 'pkg_desc'"`
 	CreatedAt   time.Time `xorm:"not null created"`
-	UpdatedAt   time.Time `xorm:"not null created"`
+	UpdatedAt   time.Time `xorm:"not null updated"`
 }
 
 //PackageMapper package orm mapper struct
 type PackageMapper struct {
+}
+
+var packageMapper *PackageMapper
+
+// PackageMapperInstance  return single PackageMapper instance
+func PackageMapperInstance() *PackageMapper {
+	if packageMapper == nil {
+		return &PackageMapper{}
+	}
+	return packageMapper
 }
 
 //Save insert pkg to table
