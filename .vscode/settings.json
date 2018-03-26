@@ -1,5 +1,8 @@
 {
     "todo-tree.flat": false,
     // tab缩进
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "go.testEnvVars": {
+        "XGP_CONFIG_DIR": "${workspaceRoot}/conf"
+    }
 }
