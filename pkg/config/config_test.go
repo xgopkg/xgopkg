@@ -8,7 +8,11 @@ import (
 
 func TestInit(t *testing.T) {
 }
-func TestGetMySQLURL(t *testing.T) {
+func TestMySQLURL(t *testing.T) {
 	mURL := MySQLURL()
 	assert.NotEmpty(t, mURL)
+}
+func TestLoggerLevel(t *testing.T) {
+	level := LoggerLevel()
+	assert.Equal(t, 0, level)
 }
