@@ -2,10 +2,7 @@ package main
 
 import (
 	"net/http"
-	"path"
-	"runtime"
 
-	// "github.com/labstack/echo"
 	"github.com/emicklei/go-restful"
 	restfulspec "github.com/emicklei/go-restful-openapi"
 	"github.com/go-openapi/spec"
@@ -55,12 +52,6 @@ func main() {
 		APIPath:     "/swagger.json",
 		PostBuildSwaggerObjectHandler: enrichSwaggerObject}
 	restful.DefaultContainer.Add(restfulspec.NewOpenAPIService(config))
-	//todo env get swaagerr ui dis
-	_, filename, _, ok := runtime.Caller(0)
-	if !ok {
-		log.Fatal("No caller information")
-	}
-	log.Printf("Filename : %q, Dir : %q\n", filename, path.Dir(filename))
 	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(assets.FS("public/swagger/dist"))))
 	//run server two for dashboard
 	go func() {

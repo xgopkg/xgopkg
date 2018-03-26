@@ -13,7 +13,6 @@ if [ ! "$VERSION" -o "$VERSION" == " " ]; then
         exit 0
 fi
 
-cp ./conf/config.yml ./
 GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o xgopkg ./../pkg/cmd/server
-docker build --no-cache -t registry.changhong.io/xgopkg/xgopkg:"$VERSION" .
+docker build -t registry.changhong.io/xgopkg/xgopkg:"$VERSION" .
 docker push registry.changhong.io/xgopkg/xgopkg:"$VERSION"

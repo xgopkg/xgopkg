@@ -24,7 +24,7 @@ func connectDb() {
 	url := viper.GetString("database.url")
 	maxIdle := viper.GetInt("database.maxIdle")
 	maxActive := viper.GetInt("database.maxActive")
-	log.Infof("driver: %s, url: %s", driver, url)
+	log.Debugf("driver: %s, url: %s", driver, url)
 
 	// TODO: Check cofig is nil
 	// FIXME:
