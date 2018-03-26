@@ -1,9 +1,6 @@
 package config
 
 import (
-	"path"
-	"runtime"
-
 	"github.com/spf13/viper"
 	"gopkg.in/logger.v1"
 )
@@ -13,48 +10,27 @@ func init() {
 	viper.AutomaticEnv()
 	viper.SetEnvPrefix("xgp")
 	viper.BindEnv("config_dir")
-	_, filename, _, ok := runtime.Caller(0)
-	if !ok {
-		log.Fatal("No caller information")
-	}
-	log.Printf("Filename : %q, Dir : %q\n", filename, path.Dir(filename))
-	configPath := path.Join(path.Dir(filename), "../../conf")
-	viper.SetDefault("config_dir", configPath)
 	configDir := viper.GetString("config_dir")
-	if configDir == "" {
-		configDir = "./conf"
-	}
-	log.Info(configDir)
 	viper.SetConfigName("config")
 	viper.AddConfigPath(configDir)
 	//todo multipconfig path
 	viper.AddConfigPath(".")
+	viper.AddConfigPath("../../../conf")
+	viper.AddConfigPath("./conf")
+	viper.AddConfigPath("/etc/xgopkg/conf.d")
+
 	err := viper.ReadInConfig()
 	if err != nil {
 		log.Fatal("read config error ", err)
 	}
-	log.Info(viper.GetString("mysql.host"))
 }
 
-//GetMySQLURL provides db address for connecting db
-func GetMySQLURL() string {
+// MySQLURL provides db address for connecting db
+func MySQLURL() string {
 	return viper.GetString("database.url")
 }
 
-//GetConfig get config by viper
-// func GetConfig() {
-// 	configDir := viper.GetString("config_dir")
-// 	if configDir == "" {
-// 		configDir = "./conf"
-// 	}
-// 	log.Info(configDir)
-// 	viper.SetConfigName("config")
-// 	viper.AddConfigPath(configDir)
-// 	//todo multipconfig path
-// 	viper.AddConfigPath(".")
-// 	err := viper.ReadInConfig()
-// 	if err != nil {
-// 		log.Fatal("read config error ", err)
-// 	}
-// 	log.Info(viper.GetString("mysql.host"))
-// }
+// LoggerLevel get looger level from config file
+func LoggerLevel() int {
+	return viper.GetInt("logger.level")
+}

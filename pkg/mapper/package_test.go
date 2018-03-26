@@ -40,7 +40,7 @@ func importTestSQL(filename string) {
 	engine.Import(bytes.NewBuffer(sql))
 }
 func tearDown() {
-	// importTestSQL("clean.sql")
+	importTestSQL("clean.sql")
 	log.Debug("tear down: clean tables")
 }
 

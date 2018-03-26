@@ -25,6 +25,9 @@ func connectDb() {
 	maxIdle := viper.GetInt("database.maxIdle")
 	maxActive := viper.GetInt("database.maxActive")
 	log.Infof("driver: %s, url: %s", driver, url)
+
+	// TODO: Check cofig is nil
+	// FIXME:
 	var err error
 	engine, err = xorm.NewEngine(driver, url)
 	if err != nil {

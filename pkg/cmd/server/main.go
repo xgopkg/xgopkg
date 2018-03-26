@@ -16,6 +16,7 @@ import (
 	"gopkg.in/logger.v1"
 
 	"xgopkg.com/xgopkg/pkg/assets"
+	"xgopkg.com/xgopkg/pkg/config"
 	"xgopkg.com/xgopkg/pkg/mapper"
 	"xgopkg.com/xgopkg/pkg/migrate"
 	"xgopkg.com/xgopkg/pkg/resource"
@@ -38,14 +39,8 @@ func (p PackageResource) hello(request *restful.Request, res *restful.Response) 
 	res.AddHeader("Content-Type", restful.MIME_JSON)
 	res.Write([]byte("[\"hello\"]"))
 }
-
-const (
-//HomeURL for qtrader.io home page URL
-// HomeURL = "https://www.xgopkg.com"
-)
-
 func init() {
-	log.SetOutputLevel(0)
+	log.SetOutputLevel(config.LoggerLevel())
 	mapper.Connect()
 	migrate.Migrate()
 }

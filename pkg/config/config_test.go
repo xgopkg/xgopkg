@@ -9,6 +9,6 @@ import (
 func TestInit(t *testing.T) {
 }
 func TestGetMySQLURL(t *testing.T) {
-	mURL := GetMySQLURL()
+	mURL := MySQLURL()
 	assert.NotEmpty(t, mURL)
 }

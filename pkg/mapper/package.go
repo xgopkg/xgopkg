@@ -12,8 +12,8 @@ type Package struct {
 	Name        string    `xorm:"char(100) not null 'pkg_name'"`
 	Source      string    `xorm:"'pkg_source'"`
 	Description string    `xorm:"varchar(255) 'pkg_desc'"`
-	CreatedAt   time.Time `xorm:"not null created"`
-	UpdatedAt   time.Time `xorm:"not null updated"`
+	CreatedAt   time.Time `xorm:"created"`
+	UpdatedAt   time.Time `xorm:"updated"`
 }
 
 //PackageMapper package orm mapper struct
