@@ -15,7 +15,7 @@ Features:
     ```
 2. go get download count.
 
-3. go pkg downlaod ranking.
+3. go pkg download ranking.
 
 3. Admin UI for manging your gopkg.
 
