@@ -9,7 +9,7 @@ Features:
 
     yourhostname.io/project  to  github.cong/yourname/yourproject 
 
-    you will use:
+    You will use:
     ``` bash
     go get yourhostname.io/project
     ```
@@ -17,6 +17,6 @@ Features:
 
 3. go pkg downlaod ranking.
 
-3. Admin ui for manging your gopkg.
+3. Admin UI for manging your gopkg.
 
 [中文文档](https://github.com/xgopkg/xgopkg/blob/master/README_zh-CN.md)
