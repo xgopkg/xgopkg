@@ -7,12 +7,12 @@ An go pkg route server for managing gopkg use custom hostname.
 Features:
 1. custom hostname.
 
-yourhostname.io/project  to  github.cong/yourname/yourproject 
+    yourhostname.io/project  to  github.cong/yourname/yourproject 
 
-you will use:
-``` bash
-go get yourhostname.io/project
-```
+    you will use:
+    ``` bash
+    go get yourhostname.io/project
+    ```
 2. go get download count.
 
 3. go pkg downlaod ranking.
