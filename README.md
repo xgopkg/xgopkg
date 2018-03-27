@@ -13,10 +13,14 @@ Features:
     ``` bash
     go get yourhostname.io/project
     ```
-2. go get download count.
+2. Download statistics.
 
-3. go pkg download ranking.
+3. Download ranking.
 
 3. Admin UI for manging your gopkg.
+
+4. Deploy in docker.
+
+5. Deploy on kubernetes.
 
 [中文文档](https://github.com/xgopkg/xgopkg/blob/master/README_zh-CN.md)
