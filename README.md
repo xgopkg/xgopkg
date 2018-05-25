@@ -23,4 +23,14 @@ Features:
 
 5. Deploy on kubernetes.
 
+
+
+Contribute:
+
+First step:
+```
+mkdir  $GOPATH/src/xgopkg.com
+cd $GOPATH/src/xgopkg.com
+git clone https://github.com/xgopkg/xgopkg.git
+```
 [中文文档](https://github.com/xgopkg/xgopkg/blob/master/README_zh-CN.md)
