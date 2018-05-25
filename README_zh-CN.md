@@ -34,12 +34,9 @@ $ go run main.go
 ├── README_zh-CN.md
 ├── docker
 │   └── Dockerfile
-├── frontend
-│   ├── README.md
-│   ├── config-overrides.js
+├── dashboard
 │   ├── node_modules
 │   ├── package.json
-│   ├── public
 │   ├── src
 │   └── yarn.lock
 ├── pkg
