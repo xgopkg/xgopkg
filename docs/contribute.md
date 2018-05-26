@@ -1,6 +1,6 @@
 
 DEV ENV:
-
+- go 1.9+
 - clone code:
     ```
     mkdir  $GOPATH/src/xgopkg.com
