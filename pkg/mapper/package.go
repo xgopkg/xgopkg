@@ -14,6 +14,7 @@ type Package struct {
 	Description string    `xorm:"varchar(255) 'pkg_desc'"`
 	CreatedAt   time.Time `xorm:"created"`
 	UpdatedAt   time.Time `xorm:"updated"`
+	UserID      string    `xorm:"user_id"`
 }
 
 //PackageMapper package orm mapper struct

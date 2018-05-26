@@ -48,6 +48,7 @@ func TestPackageMapper_Save(t *testing.T) {
 	pkg := &Package{
 		Name:        "test",
 		Description: "matrix 容器云",
+		UserID:      "8ac48532-7870-46d2-96cb-6eb273669806",
 		Source:      "https://git.changhong.io/chcloud/matrix/plugin/",
 	}
 
@@ -55,7 +56,7 @@ func TestPackageMapper_Save(t *testing.T) {
 	assert.NoError(t, err)
 }
 func TestPackageMapper_FindByName(t *testing.T) {
-	pkg := pkgMapper.FindByName("matrix")
+	pkg := pkgMapper.FindByName("test2")
 	log.Debugf("pkg is %+v", pkg)
-	assert.Equal(t, "matrix", pkg.Name)
+	assert.Equal(t, "test2", pkg.Name)
 }

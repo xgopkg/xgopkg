@@ -1,1 +1,1 @@
-INSERT INTO$`xgopkg`.`xgp_package`(`id`, `pkg_name`, `pkg_source`, `pkg_desc`, `updated_at`, `created_at`) VALUES (1, 'test', 'https://github.com/xogopkg/test', 'test pkg', '2018-03-09 21:12:19', '2018-03-09 21:12:19');
+INSERT INTO `xgopkg`.`xgp_package`(`id`, `pkg_name`, `pkg_source`, `pkg_desc`, `user_id`,`updated_at`, `created_at`) VALUES (1, 'test2', 'https://github.com/xogopkg/test', 'test pkg','1a08b350-0ed1-4a59-b0c9-5706882bd19b', '2018-03-09 21:12:19', '2018-03-09 21:12:19');

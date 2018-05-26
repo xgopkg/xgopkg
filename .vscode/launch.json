@@ -13,7 +13,10 @@
             "port": 2345,
             "host": "127.0.0.1",
             "program": "${workspaceRoot}/pkg/cmd/server",
-            "env": {},
+            "env": {
+                "XGP_CONFIG_DIR": "${workspaceRoot}/conf",
+                "XGP_ENV": "dev"
+            },
             "args": [],
             "showLog": true
         }
