@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 
-	"github.com/emicklei/go-restful"
 	_ "github.com/go-xorm/xorm"
 	_ "github.com/mattes/migrate"
 	_ "github.com/mattes/migrate/database/mysql"
@@ -16,23 +15,6 @@ import (
 	"xgopkg.com/xgopkg/pkg/route"
 )
 
-// PackageResource xxx
-type PackageResource struct {
-}
-
-// WebService  xx
-func (p PackageResource) WebService() *restful.WebService {
-	ws := new(restful.WebService)
-	ws.Path("/users").Consumes(restful.MIME_JSON)
-	ws.Produces(restful.MIME_JSON) // you can specify this per route as well
-
-	ws.Route(ws.GET("/").To(p.hello))
-	return ws
-}
-func (p PackageResource) hello(request *restful.Request, res *restful.Response) {
-	res.AddHeader("Content-Type", restful.MIME_JSON)
-	res.Write([]byte("[\"hello\"]"))
-}
 func init() {
 	log.SetOutputLevel(config.LoggerLevel())
 	mapper.Connect()

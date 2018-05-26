@@ -5,16 +5,13 @@ import (
 
 	"github.com/emicklei/go-restful"
 	restfulspec "github.com/emicklei/go-restful-openapi"
-	_ "github.com/go-xorm/xorm"
 	"gopkg.in/logger.v1"
 
 	"xgopkg.com/xgopkg/pkg/assets"
-	// "xgopkg.com/xgopkg/pkg/config"
-
 	rs "xgopkg.com/xgopkg/pkg/resource"
 )
 
-//PackageRoute go get
+//Package go get
 func Package() {
 	ws := new(restful.WebService)
 	log.Debug("pkg route")
