@@ -3,7 +3,7 @@ package route
 import (
 	"net/http"
 
-	"github.com/emicklei/go-restful"
+	rest "github.com/emicklei/go-restful"
 	restfulspec "github.com/emicklei/go-restful-openapi"
 	"gopkg.in/logger.v1"
 
@@ -13,31 +13,48 @@ import (
 
 //Package go get
 func Package() {
-	ws := new(restful.WebService)
+	ws := new(rest.WebService)
 	log.Debug("pkg route")
 	ws.Route(ws.GET("/{*}").To(rs.Render))
 }
+func init() {
+	APIServerContainer()
+}
 
 //API route go-restful api
-func API(mux *http.ServeMux) {
-	ws := new(restful.WebService)
-	ws.Path("/api/v1")
-	container := restful.NewContainer()
-	container.ServeMux = mux
-	container.Add(ws)
+func API() {
+
+	// ws := new(restful.WebService)
+	// ws.Path("/api/v1")
+	APIServerContainer().
+		Add(rs.NewPackageResource().WebService()).
+		Add(rs.NewUserResource().WebService())
+
 	config := restfulspec.Config{
-		WebServices: restful.RegisteredWebServices(),
-		APIPath:     "/swagger.json",
+		WebServices:                   APIServerContainer().RegisteredWebServices(),
+		APIPath:                       "/swagger.json",
+		APIVersion:                    "1",
 		PostBuildSwaggerObjectHandler: enrichSwaggerObject}
-	container.Add(restfulspec.NewOpenAPIService(config))
+	APIServerContainer().Add(restfulspec.NewOpenAPIService(config))
+
 }
 
 //WebUI route swagger & web.
-func WebUI(mux *http.ServeMux) {
-	mux.Handle("/apidocs/",
+func WebUI() {
+	APIServerContainer().ServeMux.Handle("/apidocs/",
 		http.StripPrefix("/apidocs/",
 			http.FileServer(assets.FS("public/swagger/dist"))))
-	mux.Handle("/",
+	APIServerContainer().ServeMux.Handle("/",
 		http.StripPrefix("/",
 			http.FileServer(assets.FS("build/"))))
+}
+
+var apiContainer *rest.Container
+
+//APIServerContainer get apiserver container
+func APIServerContainer() *rest.Container {
+	if apiContainer == nil {
+		apiContainer = rest.NewContainer()
+	}
+	return apiContainer
 }

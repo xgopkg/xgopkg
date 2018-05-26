@@ -1,19 +1,36 @@
 package resource
 
-/* // PackageResource xxx
+import (
+	rest "github.com/emicklei/go-restful"
+	restfulspec "github.com/emicklei/go-restful-openapi"
+	"gopkg.in/logger.v1"
+)
+
+// PackageResource package resource
 type PackageResource struct {
 }
 
 // WebService  xx
-func (p PackageResource) WebService() *restful.WebService {
-	ws := new(restful.WebService)
-	ws.Path("/users").Consumes(restful.MIME_JSON)
-	ws.Produces(restful.MIME_JSON) // you can specify this per route as well
+func (p PackageResource) WebService() *rest.WebService {
+	tags := []string{"packages"}
+	ws := new(rest.WebService)
 
-	ws.Route(ws.GET("/").To(p.hello))
+	ws.Path("/api/v1/packages").
+		Consumes(rest.MIME_JSON).
+		Produces(rest.MIME_JSON)
+	ws.Route(ws.GET("").
+		To(p.getPackages).
+		Doc("get all packages").
+		Metadata(restfulspec.KeyOpenAPITags, tags))
 	return ws
 }
-func (p PackageResource) hello(request *restful.Request, res *restful.Response) {
-	res.AddHeader("Content-Type", restful.MIME_JSON)
+func (p PackageResource) getPackages(request *rest.Request, res *rest.Response) {
+	log.Debug("get pkgs")
 	res.Write([]byte("[\"hello\"]"))
-} */
+	//TODO: query DB
+}
+
+//NewPackageResource new package resource
+func NewPackageResource() *PackageResource {
+	return &PackageResource{}
+}

@@ -25,12 +25,11 @@ func main() {
 	// use flag:
 	// just as --port ...
 
-	//run server two for dashboard
+	//run server two for apiserver
 	go func() {
-		mux := http.NewServeMux()
-		route.API(mux)
-		route.WebUI(mux)
-		log.Fatal(http.ListenAndServe(":8001", mux))
+		route.API()
+		route.WebUI()
+		log.Fatal(http.ListenAndServe(":8001", route.APIServerContainer()))
 	}()
 	route.Package()
 	//Run main server
