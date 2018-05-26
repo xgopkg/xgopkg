@@ -3,7 +3,6 @@ package resource
 import (
 	"strings"
 
-	// "github.com/arschles/go-bindata-html-template"
 	"github.com/emicklei/go-restful"
 	"gopkg.in/logger.v1"
 	"html/template"
@@ -23,7 +22,6 @@ type PackageView struct {
 func Render(req *restful.Request, resp *restful.Response) {
 	log.Debug(req.Request.URL)
 
-	log.Info("====")
 	if req.QueryParameter("go-get") != "1" {
 		resp.WriteHeader(400)
 		return
@@ -52,7 +50,6 @@ func Render(req *restful.Request, resp *restful.Response) {
 
 	//Remove last '/'
 	//For example  /matrix/types/?go-get=1 to  /matrix/types
-
 	if strings.HasSuffix(path, "/") {
 		iPath = path[0:lastIndex]
 	} else {
@@ -97,7 +94,7 @@ func findPkg(iPath string) (*mapper.Package, string) {
 		return pkg, ""
 	}
 	if strings.LastIndex(iPath, "/") == 0 {
-		log.Debug("遍历完了还是没找到")
+		log.Debug("Package not found")
 		return nil, ""
 	}
 	return findPkg(iPath[0:strings.LastIndex(iPath, "/")])

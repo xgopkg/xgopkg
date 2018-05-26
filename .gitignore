@@ -1,4 +1,4 @@
-xgopkg
+docker/xgopkg
 # Binaries for programs and plugins
 *.exe
 *.dll
@@ -37,3 +37,4 @@ yarn-debug.log*
 yarn-error.log
 #production config
 *.prod.yml
+*.dev.yml

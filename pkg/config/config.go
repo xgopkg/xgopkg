@@ -10,12 +10,20 @@ func init() {
 	viper.AutomaticEnv()
 	viper.SetEnvPrefix("xgp")
 	viper.BindEnv("config_dir")
+	viper.BindEnv("env")
 	configDir := viper.GetString("config_dir")
-	viper.SetConfigName("config")
+
+	configName := "config"
+	if env := viper.GetString("env"); env != "" {
+		configName = configName + "." + env
+	}
+	viper.SetConfigName(configName)
+
 	viper.AddConfigPath(configDir)
 	//todo multipconfig path
 	viper.AddConfigPath(".")
 	viper.AddConfigPath("../../../conf")
+	viper.AddConfigPath("../../conf")
 	viper.AddConfigPath("./conf")
 	viper.AddConfigPath("/etc/xgopkg/conf.d")
 
@@ -23,6 +31,7 @@ func init() {
 	if err != nil {
 		log.Fatal("read config error ", err)
 	}
+	log.Infof("Load config from file:[%s]", viper.ConfigFileUsed())
 }
 
 // MySQLURL provides db address for connecting db
