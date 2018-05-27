@@ -18,7 +18,7 @@ type Pageable struct {
 	Sort      Sort
 }
 
-//Page
+//SetDefault default page
 func (p *Pageable) SetDefault() {
 	if p.PageIndex == 0 {
 		p.PageIndex = 1
