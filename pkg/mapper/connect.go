@@ -48,3 +48,10 @@ func Close() {
 	}
 	log.Info("DB engine closed.")
 }
+
+//Page page util
+func PageHelper(pageIndex int, pageSize int) *xorm.Session {
+	limit := pageSize
+	start := (pageIndex - 1) * pageSize
+	return engine.Limit(limit, start)
+}

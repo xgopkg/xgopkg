@@ -47,9 +47,9 @@ func tearDown() {
 func TestPackageMapper_Save(t *testing.T) {
 	pkg := &Package{
 		Name:        "test",
-		Description: "matrix 容器云",
+		Description: "test",
 		UserID:      "8ac48532-7870-46d2-96cb-6eb273669806",
-		Source:      "https://git.changhong.io/chcloud/matrix/plugin/",
+		Source:      "https://github.com/xgopkg/testpkg/",
 	}
 
 	err := pkgMapper.Save(pkg)
@@ -59,4 +59,17 @@ func TestPackageMapper_FindByName(t *testing.T) {
 	pkg := pkgMapper.FindByName("test2")
 	log.Debugf("pkg is %+v", pkg)
 	assert.Equal(t, "test2", pkg.Name)
+}
+
+func TestPackageMapper_FindByUserID(t *testing.T) {
+	pageable := &Pageable{}
+	pageable.PageIndex = 1
+	pageable.PageSize = 10
+	page, err := pkgMapper.FindByUserID("1a08b350-0ed1-4a59-b0c9-5706882bd19b", pageable)
+	assert.NoError(t, err)
+	log.Debugf("pkg page:%+v", page)
+	log.Debugf("pkg page:%+v", page.Data)
+	assert.NotNil(t, page)
+	assert.NotEmpty(t, page.Data)
+	assert.Equal(t, "test2", page.Data.([]Package)[0].Name)
 }

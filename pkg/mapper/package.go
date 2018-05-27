@@ -19,6 +19,7 @@ type Package struct {
 
 //PackageMapper package orm mapper struct
 type PackageMapper struct {
+	PageableMapper
 }
 
 var packageMapper *PackageMapper
@@ -50,4 +51,18 @@ func (p *PackageMapper) FindByName(name string) *Package {
 		return nil
 	}
 	return &pkg
+}
+
+//FindByUserID qeuery user by user_id
+func (p *PackageMapper) FindByUserID(userID string, pa *Pageable) (*Page, error) {
+	var pkg []Package
+	engine.Alias("p").Where("p.user_id=?", userID).Limit(pa.PageSize, pa.Offset()).Find(&pkg)
+	count, err := engine.Count(&Package{})
+	if err != nil {
+		//todo
+		log.Error(err)
+	}
+	log.Debugf("total: %d", count)
+
+	return p.PageBuilder().Page(pa).Data(pkg).Total(count).Build()
 }
