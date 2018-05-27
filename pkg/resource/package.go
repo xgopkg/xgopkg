@@ -1,9 +1,14 @@
 package resource
 
 import (
+	"encoding/json"
+	"strconv"
+
 	rest "github.com/emicklei/go-restful"
 	restfulspec "github.com/emicklei/go-restful-openapi"
 	"gopkg.in/logger.v1"
+
+	"xgopkg.com/xgopkg/pkg/mapper"
 )
 
 // PackageResource package resource
@@ -21,12 +26,41 @@ func (p PackageResource) WebService() *rest.WebService {
 	ws.Route(ws.GET("").
 		To(p.getPackages).
 		Doc("get all packages").
-		Metadata(restfulspec.KeyOpenAPITags, tags))
+		Param(ws.QueryParameter("user_id", "user id")).
+		Param(ws.QueryParameter("name", "package name")).
+		Param(ws.QueryParameter("page_index", "page index").DataType("number").DefaultValue("1")).
+		Param(ws.QueryParameter("page_size", "page size").DataType("number").DefaultValue("10")).
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Writes(mapper.Page{}))
 	return ws
 }
 func (p PackageResource) getPackages(request *rest.Request, res *rest.Response) {
 	log.Debug("get pkgs")
-	res.Write([]byte("[\"hello\"]"))
+	userID := request.QueryParameter("user_id")
+	pkgName := request.QueryParameter("name")
+	pageIndex, err := strconv.Atoi(request.QueryParameter("page_index"))
+	pageSize, err := strconv.Atoi(request.QueryParameter("page_size"))
+	pageable := &mapper.Pageable{PageIndex: pageIndex, PageSize: pageSize}
+	if err != nil {
+		//todo
+	}
+
+	//TODO:
+	//Dynamic search conditions build
+	condition := new(mapper.Package)
+	condition.Name = pkgName
+	condition.UserID = userID
+	page, err := mapper.DefaultPackageMapper().FindByCondition(condition, pageable)
+	if err != nil {
+		//todo
+	}
+	data, err := json.Marshal(page)
+	if err != nil {
+		//todo
+	}
+	res.Write(data)
+	return
+
 	//TODO: query DB
 }
 

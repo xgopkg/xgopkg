@@ -58,11 +58,11 @@ func (p *Pageable) Offset() int {
 
 //Page page
 type Page struct {
-	PageIndex int
-	PageSize  int
-	Pages     int64
-	Total     int64
-	Data      interface{}
+	PageIndex int         `json:"page_index,omitempty"`
+	PageSize  int         `json:"page_size,omitempty"`
+	Pages     int64       `json:"pages,omitempty"`
+	Total     int64       `json:"total,omitempty"`
+	Data      interface{} `json:"data,omitempty"`
 }
 
 //NewPage page

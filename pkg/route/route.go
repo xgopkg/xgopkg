@@ -41,12 +41,15 @@ func API() {
 
 //WebUI route swagger & web.
 func WebUI() {
+
 	APIServerContainer().ServeMux.Handle("/apidocs/",
 		http.StripPrefix("/apidocs/",
 			http.FileServer(assets.FS("public/swagger/dist"))))
-	APIServerContainer().ServeMux.Handle("/",
-		http.StripPrefix("/",
-			http.FileServer(assets.FS("build/"))))
+
+	// APIServerContainer().ServeMux.Handle("/",
+	// 	http.StripPrefix("/",
+	// 		http.FileServer(assets.FS("build/"))))
+
 }
 
 var apiContainer *rest.Container

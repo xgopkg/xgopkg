@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	_ "github.com/go-xorm/xorm"
@@ -39,8 +40,10 @@ func main() {
 		} else {
 			log.Fatal("apiserver port not configured.")
 		}
-		route.API()
 		route.WebUI()
+		route.API()
+
+		fmt.Printf("apiserver start. http://localhost:%s/\n", serverCfg.APIServer.Port)
 		log.Fatal(http.ListenAndServe(apiserverAddr, route.APIServerContainer()))
 	}()
 

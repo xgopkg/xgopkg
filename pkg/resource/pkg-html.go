@@ -89,7 +89,7 @@ func findPkg(iPath string) (*mapper.Package, string) {
 	// TODO: 跳出条件
 	// find a pkg in table or last item in iPath
 	log.Debug(iPath)
-	pkg := mapper.PackageMapperInstance().FindByName(iPath)
+	pkg := mapper.DefaultPackageMapper().GetByName(iPath)
 	if pkg != nil {
 		return pkg, ""
 	}

@@ -67,8 +67,8 @@ func TestPackageMapper_FindByUserID(t *testing.T) {
 	pageable.PageSize = 10
 	page, err := pkgMapper.FindByUserID("1a08b350-0ed1-4a59-b0c9-5706882bd19b", pageable)
 	assert.NoError(t, err)
-	log.Debugf("pkg page:%+v", page)
-	log.Debugf("pkg page:%+v", page.Data)
+	log.Debugf("pkg page:\n%+v", page)
+	log.Debugf("pkg page:\n%+v", page.Data)
 	assert.NotNil(t, page)
 	assert.NotEmpty(t, page.Data)
 	assert.Equal(t, "test2", page.Data.([]Package)[0].Name)
