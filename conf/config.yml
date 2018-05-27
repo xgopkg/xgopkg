@@ -1,3 +1,8 @@
+server:
+  engine:
+    port: 8080
+  apiserver:
+    port: 8001
 database:
   type: mysql
   url: "travis:@/xgopkg?charset=utf8"

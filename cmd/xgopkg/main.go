@@ -16,22 +16,41 @@ import (
 )
 
 func init() {
-	log.SetOutputLevel(config.LoggerLevel())
-	mapper.Connect()
-	migrate.Migrate()
+
 }
 func main() {
-	//TODO: support flag
-	// use flag:
-	// just as --port ...
+	//set log level
+	log.SetOutputLevel(config.LoggerLevel())
+	//db connection
+	mapper.Connect()
+	defer mapper.Close()
+	//db migrate
+	migrate.Migrate()
 
-	//run server two for apiserver
+	//server addr
+	var engineAddr, apiserverAddr string
+	//get server config
+	serverCfg := config.ServerConfig()
+
+	//run apiserver
 	go func() {
+		if serverCfg.APIServer.Port != "" {
+			apiserverAddr = ":" + serverCfg.APIServer.Port
+		} else {
+			log.Fatal("apiserver port not configured.")
+		}
 		route.API()
 		route.WebUI()
-		log.Fatal(http.ListenAndServe(":8001", route.APIServerContainer()))
+		log.Fatal(http.ListenAndServe(apiserverAddr, route.APIServerContainer()))
 	}()
+
+	if serverCfg.Engine.Port != "" {
+		engineAddr = ":" + serverCfg.Engine.Port
+	} else {
+		log.Fatal("Engine server port not configured.")
+	}
+
 	route.Package()
 	//Run main server
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(engineAddr, nil))
 }

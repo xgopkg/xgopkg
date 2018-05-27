@@ -17,7 +17,6 @@ func Connect() {
 		return
 	}
 	connectDb()
-
 }
 func connectDb() {
 	driver := viper.GetString("database.type")
@@ -38,4 +37,14 @@ func connectDb() {
 	engine.SetTableMapper(tbMapper)
 	engine.SetMaxIdleConns(maxIdle)
 	engine.SetMaxOpenConns(maxActive)
+}
+
+//Close db connection close
+func Close() {
+	err := engine.Close()
+	if err != nil {
+		log.Errorf("Close db failed: err=%s", err)
+		return
+	}
+	log.Info("DB engine closed.")
 }

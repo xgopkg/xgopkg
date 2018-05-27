@@ -43,3 +43,31 @@ func MySQLURL() string {
 func LoggerLevel() int {
 	return viper.GetInt("logger.level")
 }
+
+var srvcfg *ServerCfg
+
+//ServerConfig server config
+func ServerConfig() *ServerCfg {
+	if srvcfg == nil {
+		srvcfg = &ServerCfg{}
+		srvcfg.APIServer.Port = viper.GetString("server.apiserver.port")
+		srvcfg.Engine.Port = viper.GetString("server.engine.port")
+	}
+	return srvcfg
+}
+
+//ServerCfg server config
+type ServerCfg struct {
+	Engine    engine
+	APIServer apiServer
+}
+
+//Engine engine
+type engine struct {
+	Port string
+}
+
+//APIServer api server config
+type apiServer struct {
+	Port string
+}
