@@ -60,7 +60,7 @@ func (p *Pageable) Offset() int {
 type Page struct {
 	PageIndex int
 	PageSize  int
-	Pages     int
+	Pages     int64
 	Total     int64
 	Data      interface{}
 }
@@ -104,9 +104,9 @@ func (p *PageBuilder) Build() (*Page, error) {
 	p.page.PageSize = p.pageable.PageSize
 
 	if p.page.Total%int64(p.page.PageSize) == 0 {
-		p.page.Pages = int(p.page.Total / int64(p.page.PageSize))
+		p.page.Pages = p.page.Total / int64(p.page.PageSize)
 	} else {
-		p.page.Pages = int(p.page.Total/int64(p.page.PageSize)) + 1
+		p.page.Pages = p.page.Total/int64(p.page.PageSize) + 1
 	}
 
 	return &(p.page), nil
