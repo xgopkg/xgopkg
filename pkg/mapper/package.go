@@ -128,6 +128,7 @@ func (p *PackageMapper) FindByCondition(condition *Package, pa *Pageable) (*Page
 	count, err := session2.Count(&Package{})
 	if err != nil {
 		//todo
+		log.Error(err)
 	}
 
 	session.Limit(pa.PageSize, pa.Offset()).Find(&pkg)

@@ -39,10 +39,21 @@ func (p PackageResource) getPackages(request *rest.Request, res *rest.Response) 
 	userID := request.QueryParameter("user_id")
 	pkgName := request.QueryParameter("name")
 	pageIndex, err := strconv.Atoi(request.QueryParameter("page_index"))
+	if err != nil {
+		//todo
+		log.Error(err)
+	}
+
 	pageSize, err := strconv.Atoi(request.QueryParameter("page_size"))
+	if err != nil {
+		//todo
+		log.Error(err)
+	}
+
 	pageable := &mapper.Pageable{PageIndex: pageIndex, PageSize: pageSize}
 	if err != nil {
 		//todo
+		log.Error(err)
 	}
 
 	//TODO:
@@ -53,13 +64,14 @@ func (p PackageResource) getPackages(request *rest.Request, res *rest.Response) 
 	page, err := mapper.DefaultPackageMapper().FindByCondition(condition, pageable)
 	if err != nil {
 		//todo
+		log.Error(err)
 	}
 	data, err := json.Marshal(page)
 	if err != nil {
 		//todo
+		log.Error(err)
 	}
 	res.Write(data)
-	return
 
 	//TODO: query DB
 }
