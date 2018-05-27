@@ -55,8 +55,8 @@ func TestPackageMapper_Save(t *testing.T) {
 	err := pkgMapper.Save(pkg)
 	assert.NoError(t, err)
 }
-func TestPackageMapper_FindByName(t *testing.T) {
-	pkg := pkgMapper.FindByName("test2")
+func TestPackageMapper_GetByName(t *testing.T) {
+	pkg := pkgMapper.GetByName("test2")
 	log.Debugf("pkg is %+v", pkg)
 	assert.Equal(t, "test2", pkg.Name)
 }
