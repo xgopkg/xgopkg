@@ -18,8 +18,8 @@ DEV ENV:
     Install mysql in docker.
     ```bash
     docker run --name mysql -p 3306:3306 --restart=always \
--v $HOME/docker/mysql:/var/lib/mysql \
--e MYSQL_ROOT_PASSWORD= -e TZ='Asia/Shanghai'  -d mysql:5.7
+    -v $HOME/docker/mysql:/var/lib/mysql \
+    -e MYSQL_ROOT_PASSWORD= -e TZ='Asia/Shanghai'  -d mysql:5.7
     ```
 - Openapi docs
 
