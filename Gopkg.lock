@@ -198,6 +198,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/xorm-page/page"
+  packages = ["."]
+  revision = "cfdba5d8447b104518086b0035151de95b0df546"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/net"
   packages = ["idna"]
   revision = "dfa909b99c79129e1100513e5cd36307665e5723"
@@ -245,6 +251,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8b6e43eab899456583fac66c5dd12bce4fde0eb4126ab2348bf34eadd540c9ce"
+  inputs-digest = "583155b8f7d5a7ac1b6e4c5c725f142f2c15641210b7b4f00ab956d02b82c929"
   solver-name = "gps-cdcl"
   solver-version = 1

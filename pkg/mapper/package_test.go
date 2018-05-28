@@ -11,6 +11,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/mattes/migrate/database/mysql"
 	"github.com/stretchr/testify/assert"
+	"github.com/xorm-page/page"
 	"gopkg.in/logger.v1"
 )
 
@@ -62,7 +63,7 @@ func TestPackageMapper_GetByName(t *testing.T) {
 }
 
 func TestPackageMapper_FindByUserID(t *testing.T) {
-	pageable := &Pageable{}
+	pageable := &page.Pageable{}
 	pageable.PageIndex = 1
 	pageable.PageSize = 10
 	page, err := pkgMapper.FindByUserID("1a08b350-0ed1-4a59-b0c9-5706882bd19b", pageable)
@@ -71,5 +72,33 @@ func TestPackageMapper_FindByUserID(t *testing.T) {
 	log.Debugf("pkg page:\n%+v", page.Data)
 	assert.NotNil(t, page)
 	assert.NotEmpty(t, page.Data)
-	assert.Equal(t, "test2", page.Data.([]Package)[0].Name)
+	assert.Equal(t, "test2", (*page.Data.(*[]Package))[0].Name)
+}
+
+func TestPackageMapper_FindAll(t *testing.T) {
+	pageable := &page.Pageable{
+		PageIndex: 1,
+		PageSize:  10,
+	}
+
+	page, err := pkgMapper.FindAll(pageable)
+	assert.NoError(t, err)
+	assert.NotEmpty(t, page.Data)
+}
+func TestPackageMapper_FindCondition(t *testing.T) {
+	pageable := &page.Pageable{}
+	pageable.PageIndex = 1
+	pageable.PageSize = 10
+
+	condition := &Package{
+		Name: "te",
+		// UserID: "1a08b350-0ed1-4a59-b0c9-5706882bd19b",
+	}
+
+	page, err := pkgMapper.FindByCondition(condition, pageable)
+	if err != nil {
+		log.Error(err)
+	}
+	// log.Debugf("page : %+v", page
+	log.Debugf("page xxxxx: %+v", page.Data)
 }

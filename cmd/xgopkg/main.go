@@ -8,6 +8,7 @@ import (
 	_ "github.com/mattes/migrate"
 	_ "github.com/mattes/migrate/database/mysql"
 	_ "github.com/spf13/viper"
+
 	"gopkg.in/logger.v1"
 
 	"xgopkg.com/xgopkg/pkg/config"
@@ -22,6 +23,7 @@ func init() {
 func main() {
 	//set log level
 	log.SetOutputLevel(config.LoggerLevel())
+
 	//db connection
 	mapper.Connect()
 	defer mapper.Close()

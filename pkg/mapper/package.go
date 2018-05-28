@@ -3,18 +3,19 @@ package mapper
 import (
 	"time"
 
+	"github.com/xorm-page/page"
 	"gopkg.in/logger.v1"
 )
 
 //Package package ORM table struct
 type Package struct {
-	ID          int64     `xorm:"pk autoincr 'id'"`
-	Name        string    `xorm:"char(100) not null 'pkg_name'"`
-	Source      string    `xorm:"'pkg_source'"`
-	Description string    `xorm:"varchar(255) 'pkg_desc'"`
-	CreatedAt   time.Time `xorm:"created"`
-	UpdatedAt   time.Time `xorm:"updated"`
-	UserID      string    `xorm:"user_id"`
+	ID          int64     `xorm:"pk autoincr 'id'" json:"id,omitempty"`
+	Name        string    `xorm:"char(100) not null 'pkg_name'" json:"name,omitempty"`
+	Source      string    `xorm:"'pkg_source'" json:"source,omitempty"`
+	Description string    `xorm:"varchar(255) 'pkg_desc'" json:"description,omitempty"`
+	CreatedAt   time.Time `xorm:"created" json:"created_at,omitempty"`
+	UpdatedAt   time.Time `xorm:"updated" json:"updated_at,omitempty"`
+	UserID      string    `xorm:"user_id" json:"user_id,omitempty"`
 }
 
 //PackageMapper package orm mapper struct
@@ -68,52 +69,32 @@ func (p *PackageMapper) FindByName(name string, pa *Pageable) (*Page, error) {
 }
 
 //FindAll find all pkg
-func (p *PackageMapper) FindAll(pa *Pageable) (*Page, error) {
-	var pkg []Package
-	engine.Limit(pa.PageSize, pa.Offset()).Find(&pkg)
-	count, err := engine.Count(&Package{})
-	if err != nil {
-		//todo
-		log.Error(err)
-	}
-	log.Debugf("total: %d", count)
-
-	return p.PageBuilder().Page(pa).Data(pkg).Total(count).Build()
+func (p *PackageMapper) FindAll(pa *page.Pageable) (*page.Page, error) {
+	var pkgs []Package
+	sess := engine.NewSession()
+	defer sess.Close()
+	return page.NewBuilder().Session(engine.NewSession()).Page(pa).Data(&pkgs).Build()
 }
 
 //FindByUserID qeuery user by user_id
-func (p *PackageMapper) FindByUserID(userID string, pa *Pageable) (*Page, error) {
-	var pkg []Package
-	engine.Alias("p").Where("p.user_id=?", userID).Limit(pa.PageSize, pa.Offset()).Find(&pkg)
-	count, err := engine.Count(&Package{})
-	if err != nil {
-		//todo
-		log.Error(err)
-	}
-	log.Debugf("total: %d", count)
-
-	return p.PageBuilder().Page(pa).Data(pkg).Total(count).Build()
+func (p *PackageMapper) FindByUserID(userID string, pa *page.Pageable) (*page.Page, error) {
+	var pkgs []Package
+	sess := engine.Alias("p").Where("p.user_id=?", userID)
+	return page.NewBuilder().Session(sess).Page(pa).Data(&pkgs).Build()
 }
 
 //FindByUserIDAndPkgName qeuery user by user_id
-func (p *PackageMapper) FindByUserIDAndPkgName(userID, pkgName string, pa *Pageable) (*Page, error) {
-	var pkg []Package
-	engine.Alias("p").Where("p.user_id=?", userID).And("p.pkg_name LIKE ?", "%"+pkgName+"%").Limit(pa.PageSize, pa.Offset()).Find(&pkg)
-	count, err := engine.Count(&Package{})
-	if err != nil {
-		//todo
-		log.Error(err)
-	}
-	log.Debugf("total: %d", count)
+func (p *PackageMapper) FindByUserIDAndPkgName(userID, pkgName string, pa *page.Pageable) (*page.Page, error) {
+	var pkgs []Package
+	sess := engine.Alias("p").Where("p.user_id=?", userID).And("p.pkg_name LIKE ?", "%"+pkgName+"%")
+	return page.NewBuilder().Page(pa).Session(sess).Data(&pkgs).Build()
 
-	return p.PageBuilder().Page(pa).Data(pkg).Total(count).Build()
 }
 
 // FindByCondition dynamic query
-func (p *PackageMapper) FindByCondition(condition *Package, pa *Pageable) (*Page, error) {
-	var pkg []Package
+func (p *PackageMapper) FindByCondition(condition *Package, pa *page.Pageable) (*page.Page, error) {
+	var pkgs []Package
 	session := engine.Alias("p").Where("1=1")
-	defer session.Close()
 	if condition != nil {
 		if condition.UserID != "" {
 			session.And("p.user_id = ?", condition.UserID)
@@ -123,15 +104,6 @@ func (p *PackageMapper) FindByCondition(condition *Package, pa *Pageable) (*Page
 			session.And("p.pkg_name LIKE ?", "%"+condition.Name+"%")
 		}
 	}
-	session2 := session.Clone()
-	defer session2.Close()
-	count, err := session2.Count(&Package{})
-	if err != nil {
-		//todo
-		log.Error(err)
-	}
 
-	session.Limit(pa.PageSize, pa.Offset()).Find(&pkg)
-	return p.PageBuilder().Page(pa).Data(pkg).Total(count).Build()
-
+	return page.NewBuilder().Page(pa).Session(session).Data(&pkgs).Build()
 }

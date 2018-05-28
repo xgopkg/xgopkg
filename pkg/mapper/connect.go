@@ -1,15 +1,25 @@
 package mapper
 
 import (
+	"os"
 	"time"
 
 	"github.com/go-xorm/core"
 	"github.com/go-xorm/xorm"
 	"github.com/spf13/viper"
 	"gopkg.in/logger.v1"
+
+	"github.com/xorm-page/page"
+	"xgopkg.com/xgopkg/pkg/config"
 )
 
 var engine *xorm.Engine
+
+func init() {
+	pageLogger := log.New(os.Stderr, "", log.Ldefault)
+	pageLogger.SetOutputLevel(config.LoggerLevel())
+	page.SetLogger(pageLogger)
+}
 
 //Connect DB
 func Connect() {
@@ -37,6 +47,7 @@ func connectDb() {
 	engine.SetTableMapper(tbMapper)
 	engine.SetMaxIdleConns(maxIdle)
 	engine.SetMaxOpenConns(maxActive)
+	engine.ShowSQL(true)
 }
 
 //Close db connection close

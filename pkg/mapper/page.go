@@ -49,13 +49,6 @@ func (p *Pageable) Offset() int {
 	return p.offset
 }
 
-// func (p *Pageable) Sort() Sort {
-// 	return p.Sort
-// }
-// func (p *Pageable) Offset() int {
-// 	return (p.pageIndex - 1) * p.pageSize
-// }
-
 //Page page
 type Page struct {
 	PageIndex int         `json:"page_index,omitempty"`

@@ -43,7 +43,7 @@
 
 [[constraint]]
   name = "github.com/go-xorm/xorm"
-  version = "0.6.4"
+  version = "0.6.6"
 
 [[constraint]]
   name = "github.com/spf13/viper"
@@ -60,3 +60,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/arschles/go-bindata-html-template"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/xorm-page/page"

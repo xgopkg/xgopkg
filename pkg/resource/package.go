@@ -1,13 +1,14 @@
 package resource
 
 import (
-	"encoding/json"
+	"reflect"
 	"strconv"
 
 	rest "github.com/emicklei/go-restful"
 	restfulspec "github.com/emicklei/go-restful-openapi"
 	"gopkg.in/logger.v1"
 
+	"github.com/xorm-page/page"
 	"xgopkg.com/xgopkg/pkg/mapper"
 )
 
@@ -31,7 +32,7 @@ func (p PackageResource) WebService() *rest.WebService {
 		Param(ws.QueryParameter("page_index", "page index").DataType("number").DefaultValue("1")).
 		Param(ws.QueryParameter("page_size", "page size").DataType("number").DefaultValue("10")).
 		Metadata(restfulspec.KeyOpenAPITags, tags).
-		Writes(mapper.Page{}))
+		Writes(page.Page{Data: []mapper.Package{}}))
 	return ws
 }
 func (p PackageResource) getPackages(request *rest.Request, res *rest.Response) {
@@ -50,7 +51,7 @@ func (p PackageResource) getPackages(request *rest.Request, res *rest.Response) 
 		log.Error(err)
 	}
 
-	pageable := &mapper.Pageable{PageIndex: pageIndex, PageSize: pageSize}
+	pageable := &page.Pageable{PageIndex: pageIndex, PageSize: pageSize}
 	if err != nil {
 		//todo
 		log.Error(err)
@@ -66,12 +67,18 @@ func (p PackageResource) getPackages(request *rest.Request, res *rest.Response) 
 		//todo
 		log.Error(err)
 	}
-	data, err := json.Marshal(page)
-	if err != nil {
-		//todo
-		log.Error(err)
-	}
-	res.Write(data)
+
+	log.Debugf("data type%v", reflect.TypeOf(page.Data))
+	// list := page.Data.(reflect.Value).Interface().(*[]mapper.Package)
+	// page.Data = list
+	// data, err := json.Marshal(page)
+	// log.Debugf("data: %+v", page.Data)
+	// // log.Debugf("list: %+v", list)
+	// if err != nil {
+	// 	//todo
+	// 	log.Error(err)
+	// }
+	res.WriteEntity(page)
 
 	//TODO: query DB
 }
