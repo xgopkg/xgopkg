@@ -15,7 +15,8 @@ import (
 func Package() {
 	ws := new(rest.WebService)
 	log.Debug("pkg route")
-	ws.Route(ws.GET("/{*}").To(rs.Render))
+	ws.Route(ws.GET("/{subpath:*}").To(rs.Render))
+        rest.Add(ws)
 }
 func init() {
 	APIServerContainer()

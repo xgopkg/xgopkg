@@ -35,6 +35,10 @@ func main() {
 	//get server config
 	serverCfg := config.ServerConfig()
 
+	route.Package()
+	//Run main server
+        log.Info("run engine server")
+
 	//run apiserver
 	go func() {
 		if serverCfg.APIServer.Port != "" {
@@ -51,11 +55,10 @@ func main() {
 
 	if serverCfg.Engine.Port != "" {
 		engineAddr = ":" + serverCfg.Engine.Port
+                
+		log.Fatal(http.ListenAndServe(engineAddr, nil))
 	} else {
 		log.Fatal("Engine server port not configured.")
 	}
 
-	route.Package()
-	//Run main server
-	log.Fatal(http.ListenAndServe(engineAddr, nil))
 }
